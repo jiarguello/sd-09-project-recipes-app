@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Redirect, useLocation } from 'react-router-dom';
 import { Context } from '../context';
@@ -27,7 +28,7 @@ function RecipeDetails() {
     setDoneRecipe(localStorage.doneRecipes
       && getItemLocalStorage('doneRecipes')
         .some(({ id: idItem }) => idItem === id));
-  }, [id, isMealPage, setFavoriteRecipe, updateData]);
+  }, [id, isMealPage, setFavoriteRecipe]);
 
   const recipeInProgress = localStorage.inProgressRecipes && Object
     .keys(getItemLocalStorage('inProgressRecipes')[querys[0]]).includes(id);
