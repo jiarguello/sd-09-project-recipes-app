@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Redirect, useLocation } from 'react-router-dom';
 import { Context } from '../context';
@@ -13,16 +12,17 @@ import '../css/RecipeDetails.css';
 function RecipeDetails() {
   const { id } = useParams();
   const { pathname } = useLocation();
-  const { setFavoriteRecipe, updateData, data } = useContext(Context);
+  const { setFavoriteRecipe } = useContext(Context);
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [doneRecipe, setDoneRecipe] = useState(false);
+  const [data, setData] = useState([]);
   const [copy, setCopy] = useState(false);
 
   const isMealPage = pathname.includes('comidas');
   const querys = isMealPage ? ['meals', 'Meal'] : ['cocktails', 'Drink'];
 
   useEffect(() => {
-    const getData = async () => updateData(fetchRecipeDetails(id, isMealPage));
+    const getData = async () => setData(await fetchRecipeDetails(id, isMealPage));
     getData();
     setFavoriteRecipe(verifyItemInFavorite(id));
     setDoneRecipe(localStorage.doneRecipes
@@ -47,7 +47,12 @@ function RecipeDetails() {
   return (
     <section className="wrapper-recipe-details">
 
-      <HeaderDetails querys={ querys } isMealPage={ isMealPage } setCopy={ setCopy } />
+      <HeaderDetails
+        querys={ querys }
+        isMealPage={ isMealPage }
+        setCopy={ setCopy }
+        data={ data }
+      />
 
       <IngredientsContainer data={ data } />
 

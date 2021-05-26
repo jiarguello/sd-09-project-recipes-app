@@ -11,15 +11,16 @@ import '../../css/RecipeInProgress.css';
 
 function MealsInProgress() {
   const { id } = useParams();
-  const { disableButton, setFavoriteRecipe, updateData, data } = useContext(Context);
+  const { disableButton, setFavoriteRecipe } = useContext(Context);
   const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [data, setData] = useState([]);
   const [copy, setCopy] = useState(false);
 
   useEffect(() => {
-    const getData = async () => updateData(fetchRecipeDetails(id, true));
+    const getData = async () => setData(await fetchRecipeDetails(id, true));
     setFavoriteRecipe(verifyItemInFavorite(id));
     getData();
-  }, [id, setFavoriteRecipe, updateData]);
+  }, [id, setFavoriteRecipe]);
 
   const handleClick = () => {
     const doneRecipe = {
@@ -41,7 +42,12 @@ function MealsInProgress() {
   return (
     <section className="recipe-details">
 
-      <HeaderDetails querys={ ['meals', 'Meal'] } isMealPage setCopy={ setCopy } />
+      <HeaderDetails
+        data={ data }
+        querys={ ['meals', 'Meal'] }
+        isMealPage
+        setCopy={ setCopy }
+      />
 
       <IngredientsContainer data={ data } />
 

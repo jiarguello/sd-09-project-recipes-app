@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { arrayOf, string, func, bool } from 'prop-types';
 import { FavoriteButton } from './index';
-import { Context } from '../context';
 import shareIcon from '../images/shareIcon.svg';
 import arrowLeft from '../images/arrowLeftIcon.svg';
 import '../css/HeaderDetails.css';
+// import Loading from './Loading';
 
-function HeaderDetails({ querys, isMealPage, setCopy }) {
-  const { data } = useContext(Context);
+function HeaderDetails({ data, querys, isMealPage, setCopy }) {
   const { pathname } = useLocation();
   const { id } = useParams();
 
@@ -18,6 +17,7 @@ function HeaderDetails({ querys, isMealPage, setCopy }) {
     setCopy(true);
   };
 
+  // if (data) return <Loading />;
   return (
     <header>
       <div className="top-icons-container">

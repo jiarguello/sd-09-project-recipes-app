@@ -3,7 +3,7 @@ import { shape, string } from 'prop-types';
 import { Redirect, Link, useLocation } from 'react-router-dom';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { verifyItemInFavorite } from '../services/functionsApi';
-import { Loading } from './index';
+import Loading from './Loading';
 import '../css/Main.css';
 
 function Main({ recipes }) {

@@ -10,15 +10,16 @@ import '../../css/RecipeInProgress.css';
 
 function DrinksInProgress() {
   const { id } = useParams();
-  const { disableButton, setFavoriteRecipe, updateData, data } = useContext(Context);
+  const { disableButton, setFavoriteRecipe } = useContext(Context);
   const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [data, setData] = useState([]);
   const [copy, setCopy] = useState(false);
 
   useEffect(() => {
-    const getData = async () => updateData(fetchRecipeDetails(id, false));
+    const getData = async () => setData(await fetchRecipeDetails(id, false));
     setFavoriteRecipe(verifyItemInFavorite(id));
     getData();
-  }, [id, setFavoriteRecipe, updateData]);
+  }, [id, setFavoriteRecipe]);
 
   const handleClick = () => {
     const doneRecipe = {
@@ -44,6 +45,7 @@ function DrinksInProgress() {
         querys={ ['cocktails', 'Drink'] }
         isMealPage={ false }
         setCopy={ setCopy }
+        data={ data }
       />
 
       <IngredientsContainer data={ data } />
