@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { fetchDrinkDetailsAPI, fetchMealsAPI } from '../../services/ApiRequest';
 import FavoriteButton from '../../Components/FavoriteButton';
 import Share from '../../Components/Share';
-import { addObj } from '../../redux/actions';
+// import { addObj } from '../../redux/actions';
 import './Details.css';
-
 
 class DetailsDrinks extends React.Component {
   constructor() {
@@ -50,7 +49,8 @@ class DetailsDrinks extends React.Component {
     const { ok, drink } = this.state;
     if (ok === true) {
       return (
-        <div>
+        <div className="detailsBtnContainer">
+          <Share />
           <FavoriteButton
             obj={ {
               id: drink.idDrink,
@@ -63,7 +63,6 @@ class DetailsDrinks extends React.Component {
             } }
             test="favorite-btn"
           />
-          <Share />
         </div>
       );
     }

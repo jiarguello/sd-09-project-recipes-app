@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Components/Header';
 import './Details+css/Details.css';
+import '../Styles/RecipesDone.css';
 // import ShareIcon from '../images/shareIcon.svg';
 import Share from '../Components/Share';
 
@@ -49,9 +50,9 @@ class RecipesDone extends React.Component {
     });
     if (all) {
       return (
-        <div>
+        <div className="containerAllDone">
           { doneRecipes.map((value, index) => (
-            <div key={ index }>
+            <div key={ index } className="cardRecipe done">
               <Share
                 value={ `/${value.type}s/${value.id}` }
                 id={ `${index}-horizontal-share-btn` }
@@ -63,20 +64,21 @@ class RecipesDone extends React.Component {
                   src={ value.image }
                   alt="img-recipe"
                 />
-                <p data-testid={ `${index}-horizontal-name` }>
+                <p className="horizontalName" data-testid={ `${index}-horizontal-name` }>
                   {value.name}
                 </p>
               </Link>
-              <p data-testid={ `${index}-horizontal-top-text` }>
+              <p className="topText" data-testid={ `${index}-horizontal-top-text` }>
                 { value.type === 'comida'
                   ? (`${value.area} - ${value.category}`)
                   : value.alcoholicOrNot }
               </p>
-              <p data-testid={ `${index}-horizontal-done-date` }>
+              <p className="doneDate" data-testid={ `${index}-horizontal-done-date` }>
                 {value.doneDate}
               </p>
               { value.tags.map((tag) => (
                 <span
+                  className="doneTag"
                   key={ tag }
                   data-testid={ `${index}-${tag}-horizontal-tag` }
                 >
@@ -94,9 +96,9 @@ class RecipesDone extends React.Component {
     const { food, comida } = this.state;
     if (comida) {
       return (
-        <div>
+        <div className="foodDone">
           { food.map((value, index) => (
-            <div key={ index }>
+            <div key={ index } className="cardRecipe done">
               <Share id={ `${index}-horizontal-share-btn` } />
               <Link to={ `/comidas/${value.id}` }>
                 <img
@@ -105,17 +107,20 @@ class RecipesDone extends React.Component {
                   src={ value.image }
                   alt="img-recipe"
                 />
-                <p data-testid={ `${index}-horizontal-name` }>
+                <p className="horizontalName" data-testid={ `${index}-horizontal-name` }>
                   {value.name}
                 </p>
               </Link>
-              <p data-testid={ `${index}-horizontal-top-text` }>
+              <p className="topText" data-testid={ `${index}-horizontal-top-text` }>
                 { `${value.area} - ${value.category}` }
               </p>
-              <p data-testid={ `${index}-horizontal-done-date` }>
+              <p className="doneDate" data-testid={ `${index}-horizontal-done-date` }>
                 {value.doneDate}
               </p>
-              <span data-testid={ `${index}-${value.tags[0]}horizontal-tag` }>
+              <span
+                className="doneTag"
+                data-testid={ `${index}-${value.tags[0]}horizontal-tag` }
+              >
                 {value.tags[0]}
               </span>
             </div>
@@ -130,9 +135,9 @@ class RecipesDone extends React.Component {
     const { drink, bebida } = this.state;
     if (bebida) {
       return (
-        <div>
+        <div className="drinksDone">
           { drink.map((value, index) => (
-            <div key={ index }>
+            <div key={ index } className="cardRecipe done">
               <Share id={ `${index}-horizontal-share-btn` } />
               <Link to={ `/bebidas/${value.id}` }>
                 <img
@@ -141,17 +146,20 @@ class RecipesDone extends React.Component {
                   src={ value.image }
                   alt="img-recipe"
                 />
-                <p data-testid={ `${index}-horizontal-name` }>
+                <p className="horizontalName" data-testid={ `${index}-horizontal-name` }>
                   {value.name}
                 </p>
               </Link>
-              <p data-testid={ `${index}-horizontal-top-text` }>
+              <p className="topText" data-testid={ `${index}-horizontal-top-text` }>
                 { value.alcoholicOrNot }
               </p>
-              <p data-testid={ `${index}-horizontal-done-date` }>
+              <p className="doneDate" data-testid={ `${index}-horizontal-done-date` }>
                 {value.doneDate}
               </p>
-              <span data-testid={ `${index}-${value.name}horizontal-tag` }>
+              <span
+                className="doneTag"
+                data-testid={ `${index}-${value.name}horizontal-tag` }
+              >
                 {value.tags[0]}
               </span>
             </div>
@@ -164,41 +172,46 @@ class RecipesDone extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="doneRecipes">
         <Header name="Receitas Feitas" />
-        <button
-          type="button"
-          onClick={ () => this.setState({
-            comida: false,
-            all: true,
-            bebida: false,
-          }) }
-          data-testid="filter-by-all-btn"
-        >
-          All
-        </button>
-        <button
-          type="button"
-          onClick={ () => this.setState({
-            comida: false,
-            all: false,
-            bebida: true,
-          }) }
-          data-testid="filter-by-drink-btn"
-        >
-          Drinks
-        </button>
-        <button
-          type="button"
-          onClick={ () => this.setState({
-            comida: true,
-            all: false,
-            bebida: false,
-          }) }
-          data-testid="filter-by-food-btn"
-        >
-          Food
-        </button>
+        <div className="buttonsContainerDone">
+          <button
+            className="categoryBtn"
+            type="button"
+            onClick={ () => this.setState({
+              comida: false,
+              all: true,
+              bebida: false,
+            }) }
+            data-testid="filter-by-all-btn"
+          >
+            All
+          </button>
+          <button
+            className="categoryBtn"
+            type="button"
+            onClick={ () => this.setState({
+              comida: false,
+              all: false,
+              bebida: true,
+            }) }
+            data-testid="filter-by-drink-btn"
+          >
+            Drinks
+          </button>
+          <button
+            className="categoryBtn"
+            type="button"
+            onClick={ () => this.setState({
+              comida: true,
+              all: false,
+              bebida: false,
+            }) }
+            data-testid="filter-by-food-btn"
+          >
+            Food
+          </button>
+        </div>
         { this.renderComidas() }
         { this.renderBebidas() }
         { this.all() }

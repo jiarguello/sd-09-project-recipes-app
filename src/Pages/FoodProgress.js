@@ -6,6 +6,7 @@ import Share from '../Components/Share';
 import FavoriteButton from '../Components/FavoriteButton';
 import { fetchMealDetailsAPI } from '../services/ApiRequest';
 import { addObj } from '../redux/actions';
+import '../Styles/Progress.css';
 
 const MAX_NUMBER_INGREDIENTS = 8;
 class FoodProgress extends Component {
@@ -16,8 +17,6 @@ class FoodProgress extends Component {
       igredients: [],
       ok: false,
     };
-    // this.getLocalStore = this.getLocalStore.bind(this);
-    // this.addLocalStore = this.addLocalStore.bind(this);
     this.itemsDone = this.itemsDone.bind(this);
     this.recipeDone = this.recipeDone.bind(this);
     this.foodFavorit = this.foodFavorit.bind(this);
@@ -49,37 +48,6 @@ class FoodProgress extends Component {
       });
   }
 
-  // getLocalStore(idObj) {
-  //   const storage = JSON.parse(localStorage.getItem("inProgressRecipes"));
-  //   const id = Object.keys(storage.cocktails).find((key) => key === idObj);
-  //   if (id.length > 0) {
-  //     this.setState({ localStorage: id[0] });
-  //   };
-  // }
-
-  // addLocalStore() {
-  //   const { meal } = this.state;
-  //   const inputs = document.querySelectorAll('input');
-  //   let array = [];
-  //   const storage = JSON.parse(localStorage.getItem("inProgressRecipes"));
-  //   if(storage !== null){
-  //     inputs.forEach((value) => {
-  //       array = [...array, value.checked];
-  //     });
-  //     localStorage.setItem("inProgressRecipes", JSON.stringify(
-  //       {
-  //         meals: {
-  //           ...storage.meals,
-  //           [meal.idMeal]: array,
-  //         },
-  //         cocktails: {
-  //           ...storage.cocktails,
-  //         }
-  //       }
-  //     ))
-  //   }
-  // }
-
   itemsDone() {
     const inputs = document.querySelectorAll('input');
     const button = document.querySelector('#finalizar');
@@ -105,7 +73,7 @@ class FoodProgress extends Component {
     const { ok, meal } = this.state;
     if (ok) {
       return (
-        <div>
+        <div className="detailsBtnContainer progress">
           <FavoriteButton
             obj={ {
               id: meal.idMeal,
@@ -149,10 +117,15 @@ class FoodProgress extends Component {
     const { meal, igredients } = this.state;
     const { strCategory, strMealThumb, strMeal, strInstructions } = meal;
     return (
-      <div>
+      <div className="detailsContainer progress">
         <h1>Comidas em Progresso</h1>
         {this.foodFavorit()}
-        <img data-testid="recipe-photo" src={ strMealThumb } alt={ strMeal } />
+        <img
+          className="detailsIMG"
+          data-testid="recipe-photo"
+          src={ strMealThumb }
+          alt={ strMeal }
+        />
         <h2 data-testid="recipe-title">{strMeal}</h2>
         <h3 data-testid="recipe-category">{strCategory}</h3>
         <div onChange={ this.itemsDone } id="verifica">
@@ -160,12 +133,14 @@ class FoodProgress extends Component {
             if (meal[value] !== '' && index < MAX_NUMBER_INGREDIENTS) {
               return (
                 <label
+                  className="inputLabel"
                   key={ index }
                   htmlFor={ index }
                   data-testid={ `${index}-ingredient-step` }
                 >
                   {meal[value]}
                   <input
+                    className="inputCheck"
                     id={ index }
                     type="checkbox"
                     onClick={ this.sumblimeText }
@@ -176,7 +151,7 @@ class FoodProgress extends Component {
             return false;
           })}
         </div>
-        <p data-testid="instructions">{strInstructions}</p>
+        <p className="instructions" data-testid="instructions">{strInstructions}</p>
         <Link to="/receitas-feitas">
           <button
             type="button"

@@ -6,6 +6,7 @@ import FavoriteButton from '../Components/FavoriteButton';
 import Share from '../Components/Share';
 import { fetchDrinkDetailsAPI } from '../services/ApiRequest';
 import { addObj } from '../redux/actions';
+import '../Styles/Progress.css';
 
 const MAX_NUMBER_INGREDIENTS = 3;
 class DrinkProgress extends Component {
@@ -60,7 +61,7 @@ class DrinkProgress extends Component {
     const { ok, drink } = this.state;
     if (ok) {
       return (
-        <div>
+        <div className="detailsBtnContainer progress">
           <FavoriteButton
             obj={ {
               id: drink.idDrink,
@@ -123,10 +124,15 @@ class DrinkProgress extends Component {
     const { drink, igredients } = this.state;
     const { strCategory, strDrinkThumb, strDrink, strInstructions } = drink;
     return (
-      <div onChange={ this.recipeDone }>
+      <div className="detailsContainer progress" onChange={ this.recipeDone }>
         <h1>Drink em Progresso </h1>
         {this.drinkFavorit()}
-        <img data-testid="recipe-photo" src={ strDrinkThumb } alt={ strDrink } />
+        <img
+          className="detailsIMG"
+          data-testid="recipe-photo"
+          src={ strDrinkThumb }
+          alt={ strDrink }
+        />
         <h2 data-testid="recipe-title">{strDrink}</h2>
         <h3 data-testid="recipe-category">{strCategory}</h3>
         <div onChange={ this.itemsDone } id="verifica">
@@ -134,12 +140,14 @@ class DrinkProgress extends Component {
             if (drink[value] !== null && index < MAX_NUMBER_INGREDIENTS) {
               return (
                 <label
+                  className="inputLabel"
                   key={ index }
                   htmlFor={ index }
                   data-testid={ `${index}-ingredient-step` }
                 >
                   {drink[value]}
                   <input
+                    className="inputCheck"
                     id={ index }
                     type="checkbox"
                     onClick={ this.sumblimeText }
@@ -150,7 +158,7 @@ class DrinkProgress extends Component {
             return false;
           })}
         </div>
-        <p data-testid="instructions">{strInstructions}</p>
+        <p className="instructions" data-testid="instructions">{strInstructions}</p>
         <Link
           to="/receitas-feitas"
         >

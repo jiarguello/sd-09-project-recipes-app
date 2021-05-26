@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import './Details.css';
 import ReactPlayer from 'react-player/youtube';
 import { fetchMealDetailsAPI, fetchCocktailAPI } from '../../services/ApiRequest';
 import FavoriteButton from '../../Components/FavoriteButton';
 import Share from '../../Components/Share';
-import { addObj } from '../../redux/actions';
-
+// import { addObj } from '../../redux/actions';
 
 class DetailsFood extends React.Component {
   constructor() {
@@ -100,7 +99,7 @@ class DetailsFood extends React.Component {
     if (ok === true) {
       return (
         <div className="detailsBtnContainer">
-          <Share id={ id } />
+          <Share />
           <FavoriteButton
             obj={ {
               id: meal.idMeal,
