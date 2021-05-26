@@ -45,7 +45,7 @@ function Categories() {
     </button>
   );
 
-  if (!categories.length) return <div>Loading...</div>;
+  if (!categories.length) return null;
 
   return (
     <section className="wrapper-categories">

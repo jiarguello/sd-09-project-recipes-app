@@ -3,6 +3,7 @@ import { shape, string } from 'prop-types';
 import { Redirect, Link, useLocation } from 'react-router-dom';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { verifyItemInFavorite } from '../services/functionsApi';
+import { Loading } from './index';
 import '../css/Main.css';
 
 function Main({ recipes }) {
@@ -14,7 +15,7 @@ function Main({ recipes }) {
   if (recipes === null) {
     window.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
   }
-  if (!recipes) return <div>Loading...</div>;
+  if (!recipes) return <Loading />;
   if (recipes.length === 1) {
     return <Redirect to={ `${pathname}/${recipes[0][`id${page}`]}` } />;
   }

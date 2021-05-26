@@ -8,3 +8,4 @@ export { default as MealsRecomendations } from './MealsRecomendations';
 export { default as DrinksRecomendations } from './DrinksRecomendations';
 export { default as IngredientsContainer } from './IngredientsContainer';
 export { default as FavoriteButton } from './FavoriteButton';
+export { default as Loading } from './Loading';

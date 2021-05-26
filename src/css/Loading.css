@@ -1,0 +1,24 @@
+.box-filter-preview {
+  animation: fade-in 1s alternate infinite;
+  background-color: var(--orange-200);
+  height: 9rem;
+}
+
+.box-recipe-preview {
+  animation: fade-in 1s alternate infinite;
+  background-color: var(--gray-100);
+  border-radius: 0.7rem;
+  height: 8rem;
+  margin: 2rem auto;
+  width: 90%;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 0;
+  }
+
+  from {
+    opacity: 1;
+  }
+}

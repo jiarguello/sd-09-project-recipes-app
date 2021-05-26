@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Header, Categories, Main, Footer } from '../../components';
+import { Header, Categories, Main, Footer, Loading } from '../../components';
 import { Context } from '../../context';
 import { fecthByName } from '../../services/api';
 
@@ -10,7 +10,7 @@ function Meals() {
     if (!data.meals) { updateData(fecthByName('', true)); }
   }, [data, updateData]);
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <Loading />;
 
   return (
     <section>

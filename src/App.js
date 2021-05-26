@@ -6,6 +6,7 @@ import { Meals, ExploreMeals, MealsByIngredients, MealsByArea,
   MealsInProgress } from './pages/meals';
 import { Drinks, ExploreDrinks, DrinksByIngredients,
   DrinksInProgress } from './pages/drinks';
+import { Loading } from './components';
 import './App.css';
 // import rockGlass from './images/rockGlass.svg';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -30,6 +31,7 @@ function App() {
       <Route path="/perfil" component={ Profile } />
       <Route path="/receitas-feitas" component={ DoneRecipes } />
       <Route path="/receitas-favoritas" component={ FavoriteRecipes } />
+      <Route component={ Loading } />
     </Switch>
   );
 }
