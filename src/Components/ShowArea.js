@@ -17,36 +17,38 @@ function ShowArea({ getMealsByArea, getMeals }) {
   }, []);
 
   return (
-    <label htmlFor="selectArea">
-      Nacionalidade
-      <select
-        data-testid="explore-by-area-dropdown"
-        id="selectArea"
-        name="nationality"
-        onChange={ (e) => getMealsByArea(e.target.value) }
-        value="select"
-      >
-        {!areas
-          ? ''
-          : areas.map(
-            (item) => (
-              <option
-                key={ item.strArea }
-                data-testid={ `${item.strArea}-option` }
-              >
-                {item.strArea}
-              </option>
-            ),
-          )}
-        <option
-          key="All"
-          data-testid="All-option"
-          onClick={ () => getMeals() }
+    <div className="container">
+      <label htmlFor="selectArea" className="selectArea">
+        Nacionalidade
+        <select
+          data-testid="explore-by-area-dropdown"
+          id="selectArea"
+          name="nationality"
+          onChange={ (e) => { getMealsByArea(e.target.value); } }
+          value="select"
         >
-          All
-        </option>
-      </select>
-    </label>
+          {!areas
+            ? ''
+            : areas.map(
+              (item) => (
+                <option
+                  key={ item.strArea }
+                  data-testid={ `${item.strArea}-option` }
+                >
+                  {item.strArea}
+                </option>
+              ),
+            )}
+          <option
+            key="All"
+            data-testid="All-option"
+            onClick={ () => getMeals() }
+          >
+            All
+          </option>
+        </select>
+      </label>
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import IngredientCard from '../Components/IngredientCard';
+import '../Styles/ExploreDrinksOrMeals.css';
 
 class ExploreFoodByIng extends React.Component {
   render() {

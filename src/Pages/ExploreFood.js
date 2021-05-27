@@ -25,9 +25,10 @@ class ExploreFood extends React.Component {
     return (
       <div className="exploreContainer">
         <Header name="Explorar Comidas" />
-        <div className="linksContainer">
+        <div className="linksContainer foods">
           <Link to="/explorar/comidas/ingredientes">
             <button
+              className="categoryBtn explore"
               data-testid="explore-by-ingredient"
               type="button"
             >
@@ -37,6 +38,7 @@ class ExploreFood extends React.Component {
 
           <Link to="/explorar/comidas/area">
             <button
+              className="categoryBtn explore"
               data-testid="explore-by-area"
               type="button"
             >
@@ -45,7 +47,13 @@ class ExploreFood extends React.Component {
           </Link>
 
           <Link to={ `/comidas/${food.idMeal}` }>
-            <button data-testid="explore-surprise" type="button">Me Surpreenda!</button>
+            <button
+              className="categoryBtn explore surprise"
+              data-testid="explore-surprise"
+              type="button"
+            >
+              Me Surpreenda!
+            </button>
           </Link>
         </div>
         <Footer />

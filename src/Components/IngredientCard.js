@@ -26,71 +26,79 @@ function IngredientCard({ name, saveMealIng, saveCocktailIng, saveIng }) {
 
   const foodIngredientList = () => {
     const maxIngredients = 11;
-    return ingredients.map(
-      (item, index) => (index <= maxIngredients
-        && (
-          <Link
-            to="/comidas"
-            onClick={ async () => {
-              await saveIng(item.strIngredient1);
-              saveMealIng(item.strIngredient);
-            } }
-          >
-            <div
-              data-testid={ `${index}-ingredient-card` }
-              key={ item.strIngredient }
-              role="link"
-            >
-              <img
-                src={ name === 'Comidas'
-                  ? `https://www.themealdb.com/images/ingredients/${item.strIngredient}-Small.png`
-                  : `https://www.thecocktaildb.com/images/ingredients/${item.strIngredient1}-Small.png` }
-                alt="ingredient"
-                data-testid={ `${index}-card-img` }
-              />
-              <span
-                data-testid={ `${index}-card-name` }
+    return (
+      <div className="ingredientsContainer">
+        {ingredients.map(
+          (item, index) => (index <= maxIngredients
+            && (
+              <Link
+                to="/comidas"
+                onClick={ async () => {
+                  await saveIng(item.strIngredient1);
+                  saveMealIng(item.strIngredient);
+                } }
               >
-                {item.strIngredient}
-              </span>
-            </div>
-          </Link>
-        )
-      ),
-    );
+                <div
+                  className="ingredientCard"
+                  data-testid={ `${index}-ingredient-card` }
+                  key={ item.strIngredient }
+                  role="link"
+                >
+                  <img
+                    src={ name === 'Comidas'
+                      ? `https://www.themealdb.com/images/ingredients/${item.strIngredient}-Small.png`
+                      : `https://www.thecocktaildb.com/images/ingredients/${item.strIngredient1}-Small.png` }
+                    alt="ingredient"
+                    data-testid={ `${index}-card-img` }
+                  />
+                  <span
+                    data-testid={ `${index}-card-name` }
+                  >
+                    {item.strIngredient}
+                  </span>
+                </div>
+              </Link>
+            )
+          ),
+        ) }
+      </div>);
   };
   const drinkIngredientList = () => {
     const maxIngredients = 11;
-    return ingredients.map(
-      (item, index) => (index <= maxIngredients
-          && (
-            <Link
-              to="/bebidas"
-              onClick={ async () => {
-                await saveIng(item.strIngredient1);
-                saveCocktailIng(item.strIngredient1);
-              } }
-            >
-              <div
-                data-testid={ `${index}-ingredient-card` }
-                key={ item.strIngredient1 }
-                role="link"
+    return (
+      <div className="ingredientsContainer">
+        { ingredients.map(
+          (item, index) => (index <= maxIngredients
+            && (
+              <Link
+                to="/bebidas"
+                onClick={ async () => {
+                  await saveIng(item.strIngredient1);
+                  saveCocktailIng(item.strIngredient1);
+                } }
               >
-                <img
-                  src={ `https://www.thecocktaildb.com/images/ingredients/${item.strIngredient1}-Small.png` }
-                  alt="ingredient"
-                  data-testid={ `${index}-card-img` }
-                />
-                <span
-                  data-testid={ `${index}-card-name` }
+                <div
+                  className="ingredientCard"
+                  data-testid={ `${index}-ingredient-card` }
+                  key={ item.strIngredient1 }
+                  role="link"
                 >
-                  {item.strIngredient1}
-                </span>
-              </div>
-            </Link>
-          )
-      ),
-    );
+                  <img
+                    src={ `https://www.thecocktaildb.com/images/ingredients/${item.strIngredient1}-Small.png` }
+                    alt="ingredient"
+                    data-testid={ `${index}-card-img` }
+                  />
+                  <span
+                    data-testid={ `${index}-card-name` }
+                  >
+                    {item.strIngredient1}
+                  </span>
+                </div>
+              </Link>
+            )
+          ),
+        ) }
+      </div>);
   };
   return (
     name === 'Comidas' ? foodIngredientList() : drinkIngredientList()
